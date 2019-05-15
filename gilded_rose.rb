@@ -1,7 +1,5 @@
 require 'pry-rails'
-require_relative './sulfuras_factory'
-require_relative './aged_brie_factory'
-require_relative './backstage_factory'
+Dir["./factories/*.rb"].each {|file| require file }
 
 class GildedRose
   FACTORIES = {
@@ -75,7 +73,11 @@ class GildedRose
   private
   def get_factory(item)
     fac_name = FACTORIES[item.name]
-    Object.const_get "#{fac_name}Factory"
+    begin
+      Object.const_get "Factories::#{fac_name}Factory"
+    rescue NameError
+      Object.const_get "Factories::GildedRoseFactory"
+    end
   end
 end
 
