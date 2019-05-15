@@ -1,12 +1,13 @@
 require 'pry-rails'
 require_relative './sulfuras_factory'
 require_relative './aged_brie_factory'
+require_relative './backstage_factory'
 
 class GildedRose
   FACTORIES = {
     'Sulfuras, Hand of Ragnaros' => 'Sulfuras',
     'Aged Brie' => 'AgedBrie',
-    # 'Backstage passes to a TAFKAL80ETC concert' => 'Backstage'
+    'Backstage passes to a TAFKAL80ETC concert' => 'Backstage'
   }.freeze
 
   def initialize(items)
