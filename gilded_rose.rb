@@ -1,6 +1,7 @@
 require 'pry-rails'
 require_relative './sulfuras_factory'
-# require_relative './aged_brie_factory'
+require_relative './aged_brie_factory'
+
 class GildedRose
   FACTORIES = {
     'Sulfuras, Hand of Ragnaros' => 'Sulfuras',
