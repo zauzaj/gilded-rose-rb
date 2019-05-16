@@ -197,5 +197,121 @@ describe GildedRose do
         end
       end
     end
+    context '#Conjured Mana Cake' do
+      context '#sell_in' do
+        let(:item) { Item.new('Conjured Mana Cake', 10, 10) }
+        it 'should always decreases by 1' do
+          expect do
+            program.update_quality
+          end.to change(item, :sell_in).by(-1)
+        end
+        context '<0' do
+          let(:item) { Item.new('Conjured Mana Cake', -1, 10) }
+          it 'should decrease quality by -4' do
+            expect do
+              program.update_quality
+            end.to change(item, :quality).by(-4)
+          end
+          context 'quality <= 0' do
+            let(:item) { Item.new('Conjured Mana Cake', -1, 0) }
+            it 'should not change quality' do
+              expect do
+                program.update_quality
+              end.to_not change(item, :quality)
+            end
+          end
+        end
+        context '==0' do
+          let(:item) { Item.new('Conjured Mana Cake', 0, 10) }
+          it 'should decrease quality by -4' do
+            expect do
+              program.update_quality
+            end.to change(item, :quality).by(-4)
+          end
+          context 'quality <= 0' do
+            let(:item) { Item.new('Conjured Mana Cake', -1, 0) }
+            it 'should not change quality' do
+              expect do
+                program.update_quality
+              end.to_not change(item, :quality)
+            end
+          end
+        end
+        context '> 1' do
+          let(:item) { Item.new('Conjured Mana Cake', 3, 10) }
+          it 'should decrease quality by -2' do
+            expect do
+              program.update_quality
+            end.to change(item, :quality).by(-2)
+          end
+          context 'quality <= 0' do
+            let(:item) { Item.new('Conjured Mana Cake', -1, 0) }
+            it 'should not change quality' do
+              expect do
+                program.update_quality
+              end.to_not change(item, :quality)
+            end
+          end
+        end
+      end
+    end
+    context '#Elixir of the Mongoose or any other' do
+      context '#sell_in' do
+        let(:item) { Item.new('Elixir of the Mongoose', 10, 10) }
+        it 'should always decreases by 1' do
+          expect do
+            program.update_quality
+          end.to change(item, :sell_in).by(-1)
+        end
+        context '<0' do
+          let(:item) { Item.new('Elixir of the Mongoose', -1, 10) }
+          it 'should decrease quality by -2' do
+            expect do
+              program.update_quality
+            end.to change(item, :quality).by(-2)
+          end
+          context 'quality <= 0' do
+            let(:item) { Item.new('Elixir of the Mongoose', -1, 0) }
+            it 'should not change quality' do
+              expect do
+                program.update_quality
+              end.to_not change(item, :quality)
+            end
+          end
+        end
+        context '==0' do
+          let(:item) { Item.new('Elixir of the Mongoose', 0, 10) }
+          it 'should decrease quality by -2' do
+            expect do
+              program.update_quality
+            end.to change(item, :quality).by(-2)
+          end
+          context 'quality <= 0' do
+            let(:item) { Item.new('Elixir of the Mongoose', -1, 0) }
+            it 'should not change quality' do
+              expect do
+                program.update_quality
+              end.to_not change(item, :quality)
+            end
+          end
+        end
+        context '>0' do
+          let(:item) { Item.new('Elixir of the Mongoose', 1, 10) }
+          it 'should decrease quality by -1' do
+            expect do
+              program.update_quality
+            end.to change(item, :quality).by(-1)
+          end
+          context 'quality <= 0' do
+            let(:item) { Item.new('Elixir of the Mongoose', -1, 0) }
+            it 'should not change quality' do
+              expect do
+                program.update_quality
+              end.to_not change(item, :quality)
+            end
+          end
+        end
+      end
+    end
   end
 end
